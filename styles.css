@@ -5,10 +5,8 @@
 }
 
 .header {
-  max-width: 800px; /* Limits width */
+  max-width: 960px; /* Limits width */
   margin: 0 auto; /* Centers the content */
-  padding-left: 20px;
-  padding-right: 20px;
 }
 
 .title {
@@ -46,5 +44,10 @@
 
 .input {
   display: flex;
-  justify-content: space-around;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: antiquewhite;
+  margin: 0 auto;
+  max-width: 960px;
+  padding: 20px;
 }
