@@ -1,47 +1,59 @@
 console.log("New script called");
 
-var primaryColor = hexToRgb('#FFFFFF');
-var secondaryColor = hexToRgb('#0056b3');
 
-try {
-	const container_div = document.querySelector(".container");
-	if (! container_div) {
-		throw new Error("Container Div Not Found");
-	}
+reset('#FFFFFF', '#0056b3', 16, 960);
 
-	for (let i = 0; i < 16; i++) {
-		container_div.appendChild(createSquare(i));
-	}
-
-} catch(error) {
-	console.log("Initial Setup Failed: " + error.message);
+function reset(primaryColor, secondaryColor, numSquares, containerSize) {
+	primaryColor = hexToRgb(primaryColor);
+	secondaryColor = hexToRgb(secondaryColor);
+	console.log("reset::Number of Squares is " + numSquares);
+	console.log("reset::primaryColor is " + primaryColor);
+	console.log("reset::secondaryColor is " + secondaryColor);
+	generateContainer(numSquares, containerSize, primaryColor, secondaryColor);
 }
 
-function createSquare(id) {
+function generateContainer(numSquares, containerSize, primaryColor, secondaryColor) {
 	try {
-    const new_div = document.createElement("div");
-    new_div.classList.add("div-square");
-  
-  
-    const new_button = document.createElement("button");
-    new_button.classList.add("button-square");
-    new_button.setAttribute('id', id);
+		const container_div = document.querySelector(".container");
+		if (! container_div) {
+			throw new Error("Container Div Not Found");
+		}
+		container_div.replaceChildren();
 
-		new_button.addEventListener('mouseenter', () => {
-			const bgColor = window.getComputedStyle(new_button).backgroundColor;
-			console.log("bgColor is " + bgColor);
-			if (bgColor === primaryColor) {
-      	new_button.style.backgroundColor = secondaryColor;
-			} else {
-      	new_button.style.backgroundColor = primaryColor;
-			}
-		});
-  	
-    new_div.appendChild(new_button);
-  	return new_div;
+		px = containerSize / numSquares;
+		console.log("reset::pixel size " + px);
+	
+		
+		for (let i = 0; i < numSquares**2; i++) {
+			container_div.appendChild(createSquare(i, px, primaryColor, secondaryColor));
+		}
+	
+	} catch(error) {
+		console.log("Initial Setup Failed: " + error.message);
+	}
+}
 
+function createSquare(id, px, primaryColor, secondaryColor) {
+	try {
+		const new_div = document.createElement("div");
+		new_div.classList.add("div-square");
+		new_div.style.width = px + 'px';
+		new_div.style.height = px + 'px';
+		new_div.style.backgroundColor = primaryColor;
+		new_div.addEventListener('mouseenter', () => changeColor(new_div, primaryColor, secondaryColor));
+		return new_div;
 	} catch (error) {
-     console.log("Error in createSquare " + error.message);
+		console.log("Error in createSquare " + error.message);
+	}
+}
+
+function changeColor(new_div, prim, sec) {
+	const bgColor = window.getComputedStyle(new_div).backgroundColor;
+	//console.log("bgColor is " + bgColor + " primary is " + prim);
+	if (bgColor === prim) {
+		new_div.style.backgroundColor = sec;
+	} else {
+		new_div.style.backgroundColor = prim;
 	}
 }
 
@@ -61,6 +73,5 @@ function hexToRgb(hex) {
 
     return `rgb(${r}, ${g}, ${b})`;
 }
-
 
 console.log("New script ended");

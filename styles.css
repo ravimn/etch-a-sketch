@@ -30,22 +30,14 @@
   box-sizing: content-box;
   border: 5px solid yellow;
   display: flex;
-  max-width: 200px;
-  max-height: 200px;
-  min-width: 200px;
-  min-height: 200px;
+  max-width: 960px;
+  max-height: 960px;
+  min-width: 960px;
+  min-height: 960px;
   flex-wrap: wrap;
 }
 
 .div-square {
-  border: 0;
-  max-width: 50px;
-  max-height: 50px;
-  min-width: 50px;
-  min-height: 50px;
-}
-
-.button-square {
   border: 1px solid red;
   background-color: white;
   width: 100%;
