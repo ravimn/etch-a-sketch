@@ -3,6 +3,11 @@ console.log("New script called");
 
 reset('#FFFFFF', '#0056b3', 16, 960);
 
+function resetContainer() {
+	let nsq = document.getElementById('nSquares').value;
+	reset ('#FFFFFF', '#0056b3', nsq, 960);
+}
+
 function reset(primaryColor, secondaryColor, numSquares, containerSize) {
 	primaryColor = hexToRgb(primaryColor);
 	secondaryColor = hexToRgb(secondaryColor);

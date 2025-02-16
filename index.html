@@ -13,7 +13,20 @@
         <h2 class="h2text">Etch-A-Sketch</h2>
       </div>
     </div>
-    <div class="input"></div>
+    <div class="input">
+      <div class="nsq-div">
+        <label for="nSquares">Number Of Squares:</label>
+        <input
+          type="number"
+          id="nSquares"
+          name="nSquares"
+          min="2"
+          max="100"
+          value="16"
+        />
+        <button class="input-button" onClick="resetContainer()">Submit</button>
+      </div>
+    </div>
     <div class="body">
       <div class="container"></div>
     </div>
